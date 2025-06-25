@@ -199,7 +199,7 @@ def encode_image(uploaded_file):
 # Configuration paths
 db_folder_path = 'chroma_db2'
 # markdown_path = './data/output.md'
-markdown_folder = './data'
+# markdown_folder = './data'
 pdf_path = './pdf/physics.pdf'
 
 # Initialize models
