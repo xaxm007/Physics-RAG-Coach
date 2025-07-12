@@ -69,16 +69,31 @@ for message in st.session_state.chat_history:
         with st.chat_message("assistant"):
             st.markdown(message.content)
 
+            if "sources" in message.metadata:
+                with st.expander("📖 Sources"):
+                    for src in message.metadata["sources"]:
+                        source = src.get("source", "Unknown")
+                        page = src.get("page", "N/A")
+                        question = src.get("question", "")
+                        reference = src.get("references", "")
+                        source_text = f"**🆀 {question}**"
+                        # if reference:
+                        #     source_text += f" | 🔗 Reference: `{reference}`"
+                        source_text += f" | 📄 *Page {int(page)} — `{source}`*"
+                        st.caption(source_text)
+
 question = st.chat_input("Ask a question:", disabled=st.session_state.processing)
 if question or image_question:
 
-    st.session_state.processing = True  # ⛔ Disable inputs
+    
 
     if (question is None and image_question is None) or (question and image_question):
         st.error("Provide either 'Text Query' or 'Image Query', not both", icon="🚨")
-        st.stop()
+        # st.stop()
         st.session_state.processing = False
-
+    else:
+        st.session_state.processing = True  # ⛔ Disable inputs
+        
     # Add last two chat messages as history
     langchain_history = []
     for msg in st.session_state.chat_history[-2:]:
@@ -106,19 +121,24 @@ if question or image_question:
                 st.markdown(query)
 
             with st.chat_message("assistant"):
+                sources = []
+                for doc in result["answer"]["context"]:
+                    sources.append({
+                        "source": doc["metadata"].get("source", "Unknown"),
+                        "page": doc["metadata"].get("page", "N/A"),
+                        "question": doc["metadata"].get("question", ""),
+                        "references": doc["metadata"].get("references", "")
+                    })
                 full_response = result["answer"]["answer"]
                 st.markdown(full_response)
 
                 # Display sources for response
                 with st.expander("📖 Sources"):
-                    for doc in result["answer"]["context"]:
-                        meta = doc.get("metadata", {})
-                        source = meta.get("source", "Unknown source")
-                        page = meta.get("page", "N/A")
-                        question = meta.get("question", "")
-                        reference = meta.get("reference", "")
-                        content = doc.get("page_content", "")
-                        
+                    for src in sources:
+                        source = src.get("source", "Unknown")
+                        page = src.get("page", "N/A")
+                        question = src.get("question", "")
+                        reference = src.get("references", "")
                         source_text = f"**🆀 {question}**"
                         # if reference:
                         #     source_text += f" | 🔗 Reference: `{reference}`"
@@ -126,10 +146,13 @@ if question or image_question:
                         st.caption(source_text)
                         # st.markdown(f"> {content}")
                         # st.markdown("---")
+                        
 
                 # Add QA to history
                 st.session_state.chat_history.append(HumanMessage(content=query))
-                st.session_state.chat_history.append(AIMessage(content=full_response))
+                ai_message = AIMessage(content=full_response)
+                ai_message.metadata = {"sources": sources}
+                st.session_state.chat_history.append(ai_message)
 
         except requests.RequestException as e:
             st.error(f"Error connecting to the API: {str(e)}")

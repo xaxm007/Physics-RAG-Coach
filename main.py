@@ -67,6 +67,7 @@ app.add_middleware(
 class QAResponse(BaseModel):
     question: str
     answer: dict
+    # metadata: list
 
 @app.get("/")
 def read_root():

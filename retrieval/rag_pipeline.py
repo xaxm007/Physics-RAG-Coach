@@ -38,7 +38,7 @@ def rag_chain(user_query: str, chat_history: list, vector_store, template: str, 
             # ("system", "Answer the question based only on the following context and chat history"),
             # ("system", "Context: {context}"),
             ("system", template),
-            # ("system", "Context: {context}"),
+            ("system", "Context: {context}"),
             MessagesPlaceholder(variable_name="history", optional=True),
             ("human", "{input}"),
         ]
@@ -66,6 +66,16 @@ def rag_chain(user_query: str, chat_history: list, vector_store, template: str, 
         "input": user_query, 
         "history": chat_history
     })
+
+    # sources = []
+    # for doc in answer["context"]:
+    #     sources.append({
+    #         "source": doc.metadata.get("source", "Unknown source"),
+    #         "page": doc.metadata.get("page", "N/A"),
+    #         "question": doc.metadata.get("question", ""),
+    #         "reference": doc.metadata.get("reference", ""),
+    #         "content": doc.get("page_content", "")
+    #     })
 
     return answer
 

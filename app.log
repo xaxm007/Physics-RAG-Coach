@@ -9410,3 +9410,378 @@ asyncio.exceptions.CancelledError
 2025-07-09 18:42:20,154 | INFO | uvicorn.error | Application startup complete.
 2025-07-09 18:42:50,586 | INFO | httpx | HTTP Request: POST https://api.mistral.ai/v1/ocr "HTTP/1.1 200 OK"
 2025-07-09 18:42:50,592 | INFO | main | Processed image: 1.jpg
+2025-07-09 23:03:30,082 | INFO | uvicorn.error | Will watch for changes in these directories: ['/Users/xaxm/Documents/ProjectX']
+2025-07-09 23:03:30,085 | INFO | uvicorn.error | Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+2025-07-09 23:03:30,085 | INFO | uvicorn.error | Started reloader process [73257] using WatchFiles
+2025-07-09 23:03:31,008 | INFO | uvicorn.error | Started server process [73259]
+2025-07-09 23:03:31,009 | INFO | uvicorn.error | Waiting for application startup.
+2025-07-09 23:03:36,810 | INFO | sentence_transformers.SentenceTransformer | Load pretrained SentenceTransformer: sentence-transformers/all-mpnet-base-v2
+2025-07-09 23:03:42,607 | INFO | uvicorn.error | Application startup complete.
+2025-07-09 23:04:22,277 | ERROR | uvicorn.error | Exception in ASGI application
+Traceback (most recent call last):
+  File "/Users/xaxm/Documents/ProjectX/.venv/lib/python3.12/site-packages/uvicorn/protocols/http/httptools_impl.py", line 409, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/xaxm/Documents/ProjectX/.venv/lib/python3.12/site-packages/uvicorn/middleware/proxy_headers.py", line 60, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/xaxm/Documents/ProjectX/.venv/lib/python3.12/site-packages/fastapi/applications.py", line 1054, in __call__
+    await super().__call__(scope, receive, send)
+  File "/Users/xaxm/Documents/ProjectX/.venv/lib/python3.12/site-packages/starlette/applications.py", line 112, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Users/xaxm/Documents/ProjectX/.venv/lib/python3.12/site-packages/starlette/middleware/errors.py", line 187, in __call__
+    raise exc
+  File "/Users/xaxm/Documents/ProjectX/.venv/lib/python3.12/site-packages/starlette/middleware/errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+  File "/Users/xaxm/Documents/ProjectX/.venv/lib/python3.12/site-packages/starlette/middleware/cors.py", line 85, in __call__
+    await self.app(scope, receive, send)
+  File "/Users/xaxm/Documents/ProjectX/.venv/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/Users/xaxm/Documents/ProjectX/.venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/Users/xaxm/Documents/ProjectX/.venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Users/xaxm/Documents/ProjectX/.venv/lib/python3.12/site-packages/starlette/routing.py", line 714, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Users/xaxm/Documents/ProjectX/.venv/lib/python3.12/site-packages/starlette/routing.py", line 734, in app
+    await route.handle(scope, receive, send)
+  File "/Users/xaxm/Documents/ProjectX/.venv/lib/python3.12/site-packages/starlette/routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "/Users/xaxm/Documents/ProjectX/.venv/lib/python3.12/site-packages/starlette/routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/Users/xaxm/Documents/ProjectX/.venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/Users/xaxm/Documents/ProjectX/.venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Users/xaxm/Documents/ProjectX/.venv/lib/python3.12/site-packages/starlette/routing.py", line 73, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "/Users/xaxm/Documents/ProjectX/.venv/lib/python3.12/site-packages/fastapi/routing.py", line 301, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/xaxm/Documents/ProjectX/.venv/lib/python3.12/site-packages/fastapi/routing.py", line 212, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/xaxm/Documents/ProjectX/main.py", line 141, in get_prompts
+    prompts = list(collection.find({}, {"_id": False}))
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/xaxm/Documents/ProjectX/.venv/lib/python3.12/site-packages/pymongo/synchronous/cursor.py", line 1284, in __next__
+    return self.next()
+           ^^^^^^^^^^^
+  File "/Users/xaxm/Documents/ProjectX/.venv/lib/python3.12/site-packages/pymongo/synchronous/cursor.py", line 1260, in next
+    if len(self._data) or self._refresh():
+                          ^^^^^^^^^^^^^^^
+  File "/Users/xaxm/Documents/ProjectX/.venv/lib/python3.12/site-packages/pymongo/synchronous/cursor.py", line 1208, in _refresh
+    self._send_message(q)
+  File "/Users/xaxm/Documents/ProjectX/.venv/lib/python3.12/site-packages/pymongo/synchronous/cursor.py", line 1102, in _send_message
+    response = client._run_operation(
+               ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/xaxm/Documents/ProjectX/.venv/lib/python3.12/site-packages/pymongo/_csot.py", line 125, in csot_wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/xaxm/Documents/ProjectX/.venv/lib/python3.12/site-packages/pymongo/synchronous/mongo_client.py", line 1917, in _run_operation
+    return self._retryable_read(
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/xaxm/Documents/ProjectX/.venv/lib/python3.12/site-packages/pymongo/synchronous/mongo_client.py", line 2026, in _retryable_read
+    return self._retry_internal(
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/xaxm/Documents/ProjectX/.venv/lib/python3.12/site-packages/pymongo/_csot.py", line 125, in csot_wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/xaxm/Documents/ProjectX/.venv/lib/python3.12/site-packages/pymongo/synchronous/mongo_client.py", line 1993, in _retry_internal
+    ).run()
+      ^^^^^
+  File "/Users/xaxm/Documents/ProjectX/.venv/lib/python3.12/site-packages/pymongo/synchronous/mongo_client.py", line 2730, in run
+    return self._read() if self._is_read else self._write()
+           ^^^^^^^^^^^^
+  File "/Users/xaxm/Documents/ProjectX/.venv/lib/python3.12/site-packages/pymongo/synchronous/mongo_client.py", line 2875, in _read
+    self._server = self._get_server()
+                   ^^^^^^^^^^^^^^^^^^
+  File "/Users/xaxm/Documents/ProjectX/.venv/lib/python3.12/site-packages/pymongo/synchronous/mongo_client.py", line 2823, in _get_server
+    return self._client._select_server(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/xaxm/Documents/ProjectX/.venv/lib/python3.12/site-packages/pymongo/synchronous/mongo_client.py", line 1812, in _select_server
+    server = topology.select_server(
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/xaxm/Documents/ProjectX/.venv/lib/python3.12/site-packages/pymongo/synchronous/topology.py", line 409, in select_server
+    server = self._select_server(
+             ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/xaxm/Documents/ProjectX/.venv/lib/python3.12/site-packages/pymongo/synchronous/topology.py", line 387, in _select_server
+    servers = self.select_servers(
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/xaxm/Documents/ProjectX/.venv/lib/python3.12/site-packages/pymongo/synchronous/topology.py", line 294, in select_servers
+    server_descriptions = self._select_servers_loop(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/xaxm/Documents/ProjectX/.venv/lib/python3.12/site-packages/pymongo/synchronous/topology.py", line 344, in _select_servers_loop
+    raise ServerSelectionTimeoutError(
+pymongo.errors.ServerSelectionTimeoutError: SSL handshake failed: ac-uymwifh-shard-00-00.plwhcxo.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1000) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms),SSL handshake failed: ac-uymwifh-shard-00-01.plwhcxo.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1000) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms),SSL handshake failed: ac-uymwifh-shard-00-02.plwhcxo.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1000) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms), Timeout: 30s, Topology Description: <TopologyDescription id: 686ea4664806c9606cca44a7, topology_type: ReplicaSetNoPrimary, servers: [<ServerDescription ('ac-uymwifh-shard-00-00.plwhcxo.mongodb.net', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('SSL handshake failed: ac-uymwifh-shard-00-00.plwhcxo.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1000) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>, <ServerDescription ('ac-uymwifh-shard-00-01.plwhcxo.mongodb.net', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('SSL handshake failed: ac-uymwifh-shard-00-01.plwhcxo.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1000) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>, <ServerDescription ('ac-uymwifh-shard-00-02.plwhcxo.mongodb.net', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('SSL handshake failed: ac-uymwifh-shard-00-02.plwhcxo.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1000) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>]>
+2025-07-09 23:05:38,970 | INFO | watchfiles.main | 1 change detected
+2025-07-09 23:05:38,974 | WARNING | uvicorn.error | WatchFiles detected changes in 'main.py'. Reloading...
+2025-07-09 23:05:39,013 | INFO | uvicorn.error | Shutting down
+2025-07-09 23:05:39,116 | INFO | uvicorn.error | Waiting for application shutdown.
+2025-07-09 23:05:39,119 | INFO | uvicorn.error | Application shutdown complete.
+2025-07-09 23:05:39,121 | INFO | uvicorn.error | Finished server process [73259]
+2025-07-09 23:05:40,561 | INFO | watchfiles.main | 4 changes detected
+2025-07-09 23:05:41,202 | INFO | uvicorn.error | Started server process [73666]
+2025-07-09 23:05:41,203 | INFO | uvicorn.error | Waiting for application startup.
+2025-07-09 23:05:45,108 | INFO | sentence_transformers.SentenceTransformer | Load pretrained SentenceTransformer: sentence-transformers/all-mpnet-base-v2
+2025-07-09 23:05:49,478 | INFO | uvicorn.error | Application startup complete.
+2025-07-09 23:06:47,962 | ERROR | main | Error processing query: Prompt must accept context as an input variable. Received prompt with input variables: ['input']
+2025-07-09 23:07:51,054 | ERROR | main | Error processing query: Prompt must accept context as an input variable. Received prompt with input variables: ['input']
+2025-07-09 23:08:19,686 | INFO | watchfiles.main | 1 change detected
+2025-07-09 23:08:19,688 | WARNING | uvicorn.error | WatchFiles detected changes in 'retrieval/rag_pipeline.py'. Reloading...
+2025-07-09 23:08:19,762 | INFO | uvicorn.error | Shutting down
+2025-07-09 23:08:19,865 | INFO | uvicorn.error | Waiting for application shutdown.
+2025-07-09 23:08:19,868 | INFO | uvicorn.error | Application shutdown complete.
+2025-07-09 23:08:19,870 | INFO | uvicorn.error | Finished server process [73666]
+2025-07-09 23:08:21,044 | INFO | watchfiles.main | 4 changes detected
+2025-07-09 23:08:21,700 | INFO | uvicorn.error | Started server process [73683]
+2025-07-09 23:08:21,701 | INFO | uvicorn.error | Waiting for application startup.
+2025-07-09 23:08:25,217 | INFO | sentence_transformers.SentenceTransformer | Load pretrained SentenceTransformer: sentence-transformers/all-mpnet-base-v2
+2025-07-09 23:08:36,342 | INFO | uvicorn.error | Application startup complete.
+2025-07-09 23:10:32,211 | INFO | httpx | HTTP Request: POST https://api.mistral.ai/v1/ocr "HTTP/1.1 200 OK"
+2025-07-09 23:10:32,218 | INFO | main | Processed image: 1.jpg
+2025-07-09 23:10:32,349 | ERROR | main | Error processing query: Prompt must accept context as an input variable. Received prompt with input variables: ['input']
+2025-07-09 23:12:27,233 | INFO | watchfiles.main | 1 change detected
+2025-07-09 23:12:27,234 | WARNING | uvicorn.error | WatchFiles detected changes in 'retrieval/rag_pipeline.py'. Reloading...
+2025-07-09 23:12:27,333 | INFO | uvicorn.error | Shutting down
+2025-07-09 23:12:27,437 | INFO | uvicorn.error | Waiting for application shutdown.
+2025-07-09 23:12:27,439 | INFO | uvicorn.error | Application shutdown complete.
+2025-07-09 23:12:27,440 | INFO | uvicorn.error | Finished server process [73683]
+2025-07-09 23:12:28,756 | INFO | watchfiles.main | 4 changes detected
+2025-07-09 23:12:29,395 | INFO | uvicorn.error | Started server process [73707]
+2025-07-09 23:12:29,395 | INFO | uvicorn.error | Waiting for application startup.
+2025-07-09 23:12:33,094 | INFO | sentence_transformers.SentenceTransformer | Load pretrained SentenceTransformer: sentence-transformers/all-mpnet-base-v2
+2025-07-09 23:12:37,722 | INFO | uvicorn.error | Application startup complete.
+2025-07-09 23:12:50,656 | INFO | httpx | HTTP Request: POST https://api.mistral.ai/v1/ocr "HTTP/1.1 200 OK"
+2025-07-09 23:12:50,663 | INFO | main | Processed image: 1.jpg
+2025-07-09 23:25:02,742 | INFO | watchfiles.main | 1 change detected
+2025-07-09 23:25:02,746 | WARNING | uvicorn.error | WatchFiles detected changes in 'app.py'. Reloading...
+2025-07-09 23:25:02,778 | INFO | uvicorn.error | Shutting down
+2025-07-09 23:25:02,884 | INFO | uvicorn.error | Waiting for application shutdown.
+2025-07-09 23:25:02,888 | INFO | uvicorn.error | Application shutdown complete.
+2025-07-09 23:25:02,890 | INFO | uvicorn.error | Finished server process [73707]
+2025-07-09 23:25:04,379 | INFO | watchfiles.main | 1 change detected
+2025-07-09 23:25:05,328 | INFO | uvicorn.error | Started server process [74622]
+2025-07-09 23:25:05,328 | INFO | uvicorn.error | Waiting for application startup.
+2025-07-09 23:25:09,992 | INFO | sentence_transformers.SentenceTransformer | Load pretrained SentenceTransformer: sentence-transformers/all-mpnet-base-v2
+2025-07-09 23:25:13,167 | INFO | watchfiles.main | 1 change detected
+2025-07-09 23:25:13,168 | WARNING | uvicorn.error | WatchFiles detected changes in 'app.py'. Reloading...
+2025-07-09 23:25:21,786 | INFO | uvicorn.error | Application startup complete.
+2025-07-09 23:25:21,791 | ERROR | uvicorn.error | Traceback (most recent call last):
+  File "/opt/anaconda3/lib/python3.12/asyncio/runners.py", line 194, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "uvloop/loop.pyx", line 1512, in uvloop.loop.Loop.run_until_complete
+  File "uvloop/loop.pyx", line 1505, in uvloop.loop.Loop.run_until_complete
+  File "uvloop/loop.pyx", line 1379, in uvloop.loop.Loop.run_forever
+  File "uvloop/loop.pyx", line 557, in uvloop.loop.Loop._run
+  File "uvloop/loop.pyx", line 476, in uvloop.loop.Loop._on_idle
+  File "uvloop/cbhandles.pyx", line 83, in uvloop.loop.Handle._run
+  File "uvloop/cbhandles.pyx", line 63, in uvloop.loop.Handle._run
+  File "/Users/xaxm/Documents/ProjectX/.venv/lib/python3.12/site-packages/uvicorn/server.py", line 70, in serve
+    with self.capture_signals():
+         ^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/contextlib.py", line 144, in __exit__
+    next(self.gen)
+  File "/Users/xaxm/Documents/ProjectX/.venv/lib/python3.12/site-packages/uvicorn/server.py", line 331, in capture_signals
+    signal.raise_signal(captured_signal)
+  File "/Users/xaxm/Documents/ProjectX/.venv/lib/python3.12/site-packages/rich_toolkit/utils/colors.py", line 159, in <lambda>
+    signal.SIGTERM, lambda signum, frame: (restore_terminal(), sys.exit(0))
+                                                               ^^^^^^^^^^^
+SystemExit: 0
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/xaxm/Documents/ProjectX/.venv/lib/python3.12/site-packages/starlette/routing.py", line 699, in lifespan
+    await receive()
+  File "/Users/xaxm/Documents/ProjectX/.venv/lib/python3.12/site-packages/uvicorn/lifespan/on.py", line 137, in receive
+    return await self.receive_queue.get()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/asyncio/queues.py", line 158, in get
+    await getter
+asyncio.exceptions.CancelledError
+
+2025-07-09 23:25:23,100 | INFO | watchfiles.main | 1 change detected
+2025-07-09 23:25:23,896 | INFO | uvicorn.error | Started server process [74627]
+2025-07-09 23:25:23,896 | INFO | uvicorn.error | Waiting for application startup.
+2025-07-09 23:25:27,874 | INFO | sentence_transformers.SentenceTransformer | Load pretrained SentenceTransformer: sentence-transformers/all-mpnet-base-v2
+2025-07-09 23:25:38,169 | INFO | uvicorn.error | Application startup complete.
+2025-07-10 11:41:25,789 | INFO | uvicorn.error | Will watch for changes in these directories: ['/Users/xaxm/Documents/ProjectX']
+2025-07-10 11:41:25,790 | INFO | uvicorn.error | Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+2025-07-10 11:41:25,791 | INFO | uvicorn.error | Started reloader process [78234] using WatchFiles
+2025-07-10 11:41:26,882 | INFO | uvicorn.error | Started server process [78236]
+2025-07-10 11:41:26,883 | INFO | uvicorn.error | Waiting for application startup.
+2025-07-10 11:41:31,665 | INFO | sentence_transformers.SentenceTransformer | Load pretrained SentenceTransformer: sentence-transformers/all-mpnet-base-v2
+2025-07-10 11:41:37,963 | INFO | uvicorn.error | Application startup complete.
+2025-07-10 11:44:09,298 | INFO | watchfiles.main | 1 change detected
+2025-07-10 11:44:09,302 | WARNING | uvicorn.error | WatchFiles detected changes in 'app.py'. Reloading...
+2025-07-10 11:44:09,376 | INFO | uvicorn.error | Shutting down
+2025-07-10 11:44:09,480 | INFO | uvicorn.error | Waiting for application shutdown.
+2025-07-10 11:44:09,482 | INFO | uvicorn.error | Application shutdown complete.
+2025-07-10 11:44:09,483 | INFO | uvicorn.error | Finished server process [78236]
+2025-07-10 11:44:10,715 | INFO | watchfiles.main | 2 changes detected
+2025-07-10 11:44:10,716 | WARNING | uvicorn.error | WatchFiles detected changes in 'app.py'. Reloading...
+2025-07-10 11:44:11,620 | INFO | uvicorn.error | Started server process [78669]
+2025-07-10 11:44:11,620 | INFO | uvicorn.error | Waiting for application startup.
+2025-07-10 11:44:16,066 | INFO | sentence_transformers.SentenceTransformer | Load pretrained SentenceTransformer: sentence-transformers/all-mpnet-base-v2
+2025-07-10 11:44:21,886 | INFO | uvicorn.error | Application startup complete.
+2025-07-10 11:44:21,893 | ERROR | uvicorn.error | Traceback (most recent call last):
+  File "/opt/anaconda3/lib/python3.12/asyncio/runners.py", line 194, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "uvloop/loop.pyx", line 1512, in uvloop.loop.Loop.run_until_complete
+  File "uvloop/loop.pyx", line 1505, in uvloop.loop.Loop.run_until_complete
+  File "uvloop/loop.pyx", line 1379, in uvloop.loop.Loop.run_forever
+  File "uvloop/loop.pyx", line 557, in uvloop.loop.Loop._run
+  File "uvloop/loop.pyx", line 476, in uvloop.loop.Loop._on_idle
+  File "uvloop/cbhandles.pyx", line 83, in uvloop.loop.Handle._run
+  File "uvloop/cbhandles.pyx", line 63, in uvloop.loop.Handle._run
+  File "/Users/xaxm/Documents/ProjectX/.venv/lib/python3.12/site-packages/uvicorn/server.py", line 70, in serve
+    with self.capture_signals():
+         ^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/contextlib.py", line 144, in __exit__
+    next(self.gen)
+  File "/Users/xaxm/Documents/ProjectX/.venv/lib/python3.12/site-packages/uvicorn/server.py", line 331, in capture_signals
+    signal.raise_signal(captured_signal)
+  File "/Users/xaxm/Documents/ProjectX/.venv/lib/python3.12/site-packages/rich_toolkit/utils/colors.py", line 159, in <lambda>
+    signal.SIGTERM, lambda signum, frame: (restore_terminal(), sys.exit(0))
+                                                               ^^^^^^^^^^^
+SystemExit: 0
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/xaxm/Documents/ProjectX/.venv/lib/python3.12/site-packages/starlette/routing.py", line 699, in lifespan
+    await receive()
+  File "/Users/xaxm/Documents/ProjectX/.venv/lib/python3.12/site-packages/uvicorn/lifespan/on.py", line 137, in receive
+    return await self.receive_queue.get()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/asyncio/queues.py", line 158, in get
+    await getter
+asyncio.exceptions.CancelledError
+
+2025-07-10 11:44:23,310 | INFO | watchfiles.main | 1 change detected
+2025-07-10 11:44:23,854 | INFO | uvicorn.error | Started server process [78673]
+2025-07-10 11:44:23,855 | INFO | uvicorn.error | Waiting for application startup.
+2025-07-10 11:44:27,540 | INFO | sentence_transformers.SentenceTransformer | Load pretrained SentenceTransformer: sentence-transformers/all-mpnet-base-v2
+2025-07-10 11:44:32,960 | INFO | uvicorn.error | Application startup complete.
+2025-07-10 11:45:32,354 | INFO | watchfiles.main | 1 change detected
+2025-07-10 11:45:32,356 | WARNING | uvicorn.error | WatchFiles detected changes in 'app.py'. Reloading...
+2025-07-10 11:45:32,389 | INFO | uvicorn.error | Shutting down
+2025-07-10 11:45:32,492 | INFO | uvicorn.error | Waiting for application shutdown.
+2025-07-10 11:45:32,495 | INFO | uvicorn.error | Application shutdown complete.
+2025-07-10 11:45:32,496 | INFO | uvicorn.error | Finished server process [78673]
+2025-07-10 11:45:33,824 | INFO | watchfiles.main | 1 change detected
+2025-07-10 11:45:34,485 | INFO | uvicorn.error | Started server process [78677]
+2025-07-10 11:45:34,485 | INFO | uvicorn.error | Waiting for application startup.
+2025-07-10 11:45:38,058 | INFO | sentence_transformers.SentenceTransformer | Load pretrained SentenceTransformer: sentence-transformers/all-mpnet-base-v2
+2025-07-10 11:45:42,993 | INFO | uvicorn.error | Application startup complete.
+2025-07-10 11:51:20,009 | INFO | watchfiles.main | 1 change detected
+2025-07-10 11:51:20,011 | WARNING | uvicorn.error | WatchFiles detected changes in 'app.py'. Reloading...
+2025-07-10 11:51:20,082 | INFO | uvicorn.error | Shutting down
+2025-07-10 11:51:20,185 | INFO | uvicorn.error | Waiting for application shutdown.
+2025-07-10 11:51:20,188 | INFO | uvicorn.error | Application shutdown complete.
+2025-07-10 11:51:20,189 | INFO | uvicorn.error | Finished server process [78677]
+2025-07-10 11:51:21,659 | INFO | watchfiles.main | 1 change detected
+2025-07-10 11:51:22,453 | INFO | uvicorn.error | Started server process [78706]
+2025-07-10 11:51:22,454 | INFO | uvicorn.error | Waiting for application startup.
+2025-07-10 11:51:26,145 | INFO | sentence_transformers.SentenceTransformer | Load pretrained SentenceTransformer: sentence-transformers/all-mpnet-base-v2
+2025-07-10 11:51:31,536 | INFO | uvicorn.error | Application startup complete.
+2025-07-10 11:51:49,220 | INFO | watchfiles.main | 1 change detected
+2025-07-10 11:51:49,221 | WARNING | uvicorn.error | WatchFiles detected changes in 'app.py'. Reloading...
+2025-07-10 11:51:49,224 | INFO | uvicorn.error | Shutting down
+2025-07-10 11:51:49,328 | INFO | uvicorn.error | Waiting for application shutdown.
+2025-07-10 11:51:49,330 | INFO | uvicorn.error | Application shutdown complete.
+2025-07-10 11:51:49,331 | INFO | uvicorn.error | Finished server process [78706]
+2025-07-10 11:51:50,659 | INFO | watchfiles.main | 1 change detected
+2025-07-10 11:51:51,200 | INFO | uvicorn.error | Started server process [78711]
+2025-07-10 11:51:51,200 | INFO | uvicorn.error | Waiting for application startup.
+2025-07-10 11:51:55,037 | INFO | sentence_transformers.SentenceTransformer | Load pretrained SentenceTransformer: sentence-transformers/all-mpnet-base-v2
+2025-07-10 11:52:00,727 | INFO | uvicorn.error | Application startup complete.
+2025-07-10 12:04:03,640 | INFO | watchfiles.main | 1 change detected
+2025-07-10 12:04:03,643 | WARNING | uvicorn.error | WatchFiles detected changes in 'app.py'. Reloading...
+2025-07-10 12:04:03,691 | INFO | uvicorn.error | Shutting down
+2025-07-10 12:04:03,799 | INFO | uvicorn.error | Waiting for application shutdown.
+2025-07-10 12:04:03,801 | INFO | uvicorn.error | Application shutdown complete.
+2025-07-10 12:04:03,803 | INFO | uvicorn.error | Finished server process [78711]
+2025-07-10 12:04:05,286 | INFO | watchfiles.main | 1 change detected
+2025-07-10 12:04:06,333 | INFO | uvicorn.error | Started server process [79618]
+2025-07-10 12:04:06,333 | INFO | uvicorn.error | Waiting for application startup.
+2025-07-10 12:04:10,884 | INFO | sentence_transformers.SentenceTransformer | Load pretrained SentenceTransformer: sentence-transformers/all-mpnet-base-v2
+2025-07-10 12:04:15,466 | INFO | uvicorn.error | Application startup complete.
+2025-07-10 12:08:28,188 | INFO | watchfiles.main | 1 change detected
+2025-07-10 12:08:28,189 | WARNING | uvicorn.error | WatchFiles detected changes in 'app.py'. Reloading...
+2025-07-10 12:08:28,281 | INFO | uvicorn.error | Shutting down
+2025-07-10 12:08:28,385 | INFO | uvicorn.error | Waiting for application shutdown.
+2025-07-10 12:08:28,388 | INFO | uvicorn.error | Application shutdown complete.
+2025-07-10 12:08:28,389 | INFO | uvicorn.error | Finished server process [79618]
+2025-07-10 12:08:29,957 | INFO | watchfiles.main | 1 change detected
+2025-07-10 12:08:30,941 | INFO | uvicorn.error | Started server process [79627]
+2025-07-10 12:08:30,942 | INFO | uvicorn.error | Waiting for application startup.
+2025-07-10 12:08:35,165 | INFO | sentence_transformers.SentenceTransformer | Load pretrained SentenceTransformer: sentence-transformers/all-mpnet-base-v2
+2025-07-10 12:08:39,557 | INFO | uvicorn.error | Application startup complete.
+2025-07-10 12:10:57,684 | INFO | watchfiles.main | 1 change detected
+2025-07-10 12:10:57,686 | WARNING | uvicorn.error | WatchFiles detected changes in 'app.py'. Reloading...
+2025-07-10 12:10:57,742 | INFO | uvicorn.error | Shutting down
+2025-07-10 12:10:57,846 | INFO | uvicorn.error | Waiting for application shutdown.
+2025-07-10 12:10:57,847 | INFO | uvicorn.error | Application shutdown complete.
+2025-07-10 12:10:57,848 | INFO | uvicorn.error | Finished server process [79627]
+2025-07-10 12:10:59,477 | INFO | watchfiles.main | 1 change detected
+2025-07-10 12:11:00,113 | INFO | uvicorn.error | Started server process [79656]
+2025-07-10 12:11:00,113 | INFO | uvicorn.error | Waiting for application startup.
+2025-07-10 12:11:04,013 | INFO | sentence_transformers.SentenceTransformer | Load pretrained SentenceTransformer: sentence-transformers/all-mpnet-base-v2
+2025-07-10 12:11:08,876 | INFO | uvicorn.error | Application startup complete.
+2025-07-10 12:11:18,240 | INFO | httpx | HTTP Request: POST https://api.mistral.ai/v1/ocr "HTTP/1.1 200 OK"
+2025-07-10 12:11:18,246 | INFO | main | Processed image: 1.jpg
+2025-07-10 12:11:40,460 | INFO | httpx | HTTP Request: POST https://api.mistral.ai/v1/ocr "HTTP/1.1 200 OK"
+2025-07-10 12:11:40,465 | INFO | main | Processed image: 2.jpg
+2025-07-10 12:12:09,910 | INFO | watchfiles.main | 1 change detected
+2025-07-10 12:12:09,911 | WARNING | uvicorn.error | WatchFiles detected changes in 'app.py'. Reloading...
+2025-07-10 12:12:09,934 | INFO | uvicorn.error | Shutting down
+2025-07-10 12:12:10,037 | INFO | uvicorn.error | Waiting for application shutdown.
+2025-07-10 12:12:10,039 | INFO | uvicorn.error | Application shutdown complete.
+2025-07-10 12:12:10,041 | INFO | uvicorn.error | Finished server process [79656]
+2025-07-10 12:12:11,662 | INFO | watchfiles.main | 1 change detected
+2025-07-10 12:12:12,306 | INFO | uvicorn.error | Started server process [79667]
+2025-07-10 12:12:12,307 | INFO | uvicorn.error | Waiting for application startup.
+2025-07-10 12:12:15,918 | INFO | sentence_transformers.SentenceTransformer | Load pretrained SentenceTransformer: sentence-transformers/all-mpnet-base-v2
+2025-07-10 12:12:22,164 | INFO | uvicorn.error | Application startup complete.
+2025-07-10 12:16:01,191 | INFO | watchfiles.main | 1 change detected
+2025-07-10 12:16:01,193 | WARNING | uvicorn.error | WatchFiles detected changes in 'main.py'. Reloading...
+2025-07-10 12:16:01,203 | INFO | uvicorn.error | Shutting down
+2025-07-10 12:16:01,307 | INFO | uvicorn.error | Waiting for application shutdown.
+2025-07-10 12:16:01,309 | INFO | uvicorn.error | Application shutdown complete.
+2025-07-10 12:16:01,310 | INFO | uvicorn.error | Finished server process [79667]
+2025-07-10 12:16:02,480 | INFO | watchfiles.main | 4 changes detected
+2025-07-10 12:16:03,412 | INFO | uvicorn.error | Started server process [79707]
+2025-07-10 12:16:03,412 | INFO | uvicorn.error | Waiting for application startup.
+2025-07-10 12:16:08,283 | INFO | sentence_transformers.SentenceTransformer | Load pretrained SentenceTransformer: sentence-transformers/all-mpnet-base-v2
+2025-07-10 12:16:13,588 | INFO | uvicorn.error | Application startup complete.
+2025-07-10 12:17:00,947 | INFO | httpx | HTTP Request: POST https://api.mistral.ai/v1/ocr "HTTP/1.1 200 OK"
+2025-07-10 12:17:00,951 | INFO | main | Processed image: 2.jpg
+2025-07-10 12:18:05,784 | INFO | watchfiles.main | 1 change detected
+2025-07-10 12:18:05,785 | WARNING | uvicorn.error | WatchFiles detected changes in 'app.py'. Reloading...
+2025-07-10 12:18:05,840 | INFO | uvicorn.error | Shutting down
+2025-07-10 12:18:05,944 | INFO | uvicorn.error | Waiting for application shutdown.
+2025-07-10 12:18:05,947 | INFO | uvicorn.error | Application shutdown complete.
+2025-07-10 12:18:05,947 | INFO | uvicorn.error | Finished server process [79707]
+2025-07-10 12:18:07,445 | INFO | watchfiles.main | 1 change detected
+2025-07-10 12:18:08,401 | INFO | uvicorn.error | Started server process [79720]
+2025-07-10 12:18:08,402 | INFO | uvicorn.error | Waiting for application startup.
+2025-07-10 12:18:12,251 | INFO | sentence_transformers.SentenceTransformer | Load pretrained SentenceTransformer: sentence-transformers/all-mpnet-base-v2
+2025-07-10 12:18:16,520 | INFO | uvicorn.error | Application startup complete.
+2025-07-10 12:18:37,886 | INFO | httpx | HTTP Request: POST https://api.mistral.ai/v1/ocr "HTTP/1.1 200 OK"
+2025-07-10 12:18:37,891 | INFO | main | Processed image: 1.jpg
+2025-07-10 12:21:12,587 | INFO | uvicorn.error | Shutting down
+2025-07-10 12:21:12,691 | INFO | uvicorn.error | Waiting for application shutdown.
+2025-07-10 12:21:12,694 | INFO | uvicorn.error | Application shutdown complete.
+2025-07-10 12:21:12,695 | INFO | uvicorn.error | Finished server process [79720]
+2025-07-10 12:21:13,567 | INFO | uvicorn.error | Stopping reloader process [78234]
