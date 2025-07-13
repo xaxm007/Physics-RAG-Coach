@@ -1,0 +1,1 @@
+Water in the range of $0^{\circ} \mathrm{C}$ to $4^{\circ} \mathrm{C}$ contracts with increasing temperature. Its coefficient of volume expansion is negative in this range. Above this temperature, water expands. Hence, water has maximum density at $0^{\circ} \mathrm{C}$. Such behaviour of water is called anomalous expansion.

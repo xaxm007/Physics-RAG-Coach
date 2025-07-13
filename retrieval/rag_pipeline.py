@@ -1,0 +1,115 @@
+from langchain import hub
+from operator import itemgetter
+from models.utils import chat_llm
+from langchain.chains import LLMChain
+from pinecone_db.pinecone_client import load_pinecone
+from langchain_core.runnables import RunnablePassthrough
+from langchain_core.output_parsers import StrOutputParser
+from langchain.chains import create_history_aware_retriever
+from langchain.chains.retrieval import create_retrieval_chain
+from langchain.retrievers.multi_query import MultiQueryRetriever
+from langchain.prompts import ChatPromptTemplate, MessagesPlaceholder
+from langchain_core.messages import AIMessage, HumanMessage, SystemMessage
+from langchain.chains.combine_documents import create_stuff_documents_chain
+from memory.redis_chat import format_output, get_redis_history
+from langchain_core.runnables.history import RunnableWithMessageHistory
+from langchain_core.runnables import RunnableLambda
+
+def rag_chain(user_query: str, vector_store, template: str, rephrase: str):
+    """RAG chain"""
+
+    # # Initialize Pinecone database
+    # vector_store = load_pinecone()
+
+    # # Prompt
+    # template = """Answer the question based only on the following context"""
+    # prompt = ChatPromptTemplate.from_template(template)
+
+    rephrase_prompt = ChatPromptTemplate.from_messages(
+        [
+            # ("system", """Given a chat history and the latest user question which might reference context in the chat history, 
+            # formulate a standalone question which can be understood without the chat history. Do NOT answer the question, 
+            # just reformulate it if needed and otherwise return it as is."""),
+            ("system", rephrase),
+            MessagesPlaceholder(variable_name="history", optional=True),
+            ("human", "{input}"),
+        ]
+    )
+
+    prompt = ChatPromptTemplate.from_messages(
+        [
+            # ("system", "Answer the question based only on the following context and chat history"),
+            # ("system", "Context: {context}"),
+            ("system", template),
+            ("system", "Context: {context}"),
+            MessagesPlaceholder(variable_name="history", optional=True),
+            ("human", "{input}"),
+        ]
+    )
+
+    # Initialize ChatModel
+    llm = chat_llm()
+    retriever = vector_store.as_retriever()
+    
+    chat_retriever_chain = create_history_aware_retriever(llm, retriever, rephrase_prompt)
+    doc_chain = create_stuff_documents_chain(llm, prompt)
+    rag_chain = create_retrieval_chain(chat_retriever_chain, doc_chain)
+
+    # chain = (
+    #     {
+    #         "context": retriever,
+    #         "question": RunnablePassthrough()
+    #     }
+    #     | prompt
+    #     | llm
+    #     | StrOutputParser()
+    # )
+    history_chain = RunnableWithMessageHistory(
+        rag_chain | RunnableLambda(format_output),  # <- wrap the final output
+        get_redis_history,
+        input_messages_key="input",
+        history_messages_key="history"
+    )
+    
+    answer = history_chain.invoke(
+        {
+            "input": user_query
+        },
+        config={
+            "configurable": {
+                "session_id": "user_123"
+            }
+        }
+    )
+    # answer = chain.invoke({
+    #     "input": user_query, 
+    #     "history": chat_history
+    # })
+
+    # sources = []
+    # for doc in answer["context"]:
+    #     sources.append({
+    #         "source": doc.metadata.get("source", "Unknown source"),
+    #         "page": doc.metadata.get("page", "N/A"),
+    #         "question": doc.metadata.get("question", ""),
+    #         "reference": doc.metadata.get("reference", ""),
+    #         "content": doc.get("page_content", "")
+    #     })
+
+    return answer
+
+# def rag(user_query: str):
+#     """Initialize Retrival Pipeline"""
+#     vector_store = load_pinecone()
+#     retriever = vector_store.as_retriever(
+#         search_type="mmr",
+#         search_kwargs={'k': 6, 'lambda_mult': 0.25}
+#     )
+#     result = rag_chain(retriever, user_query)
+#     return result
+
+    # Multiple Query Translation using llm
+    # retriever_chain = MultiQueryRetriever.from_llm(
+    #     retriever=retriever,
+    #     llm=llm
+    # )
